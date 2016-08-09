@@ -1,5 +1,8 @@
 'use strict'
 
+// support earlt Node releases
+process.nextTick = require('process.nexttick')
+
 var test     = require('tap'),
     Handover = require('hand-over'),
     Plugin   = require('./'),

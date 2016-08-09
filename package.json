@@ -1,0 +1,43 @@
+{
+  "name": "hand-over-gcm",
+  "version": "1.0.0-0",
+  "description": "Google Cloud Messaging plugin for Handover",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test.js",
+    "coverage": "npm test -- --cov --coverage-report=lcov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schwarzkopfb/hand-over-gcm.git"
+  },
+  "keywords": [
+    "google",
+    "cloud",
+    "messaging",
+    "gcm",
+    "push",
+    "notification",
+    "hand",
+    "over",
+    "handover",
+    "hand-over"
+  ],
+  "author": "Schwarzkopf Balázs <schwarzkopfb@icloud.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/schwarzkopfb/hand-over-gcm/issues"
+  },
+  "homepage": "https://github.com/schwarzkopfb/hand-over-gcm#readme",
+  "devDependencies": {
+    "hand-over": "^1.0.0-1",
+    "process.nexttick": "^1.0.1",
+    "tap": "^6.3.0"
+  },
+  "peerDependencies": {
+      "hand-over": "^1.0.0-1"
+  },
+  "dependencies": {
+    "node-gcm": "^0.14.4"
+  }
+}

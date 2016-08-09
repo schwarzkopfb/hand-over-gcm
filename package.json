@@ -1,6 +1,6 @@
 {
   "name": "hand-over-gcm",
-  "version": "1.0.0-0",
+  "version": "1.0.0-1",
   "description": "Google Cloud Messaging plugin for Handover",
   "main": "index.js",
   "scripts": {

@@ -3,6 +3,10 @@
 // support earlt Node releases
 process.nextTick = require('process.nexttick')
 
+var assert = require('assert')
+assert(process.env.HANDOVER_GCM_TEST_TOKEN, '"HANDOVER_GCM_TEST_TOKEN" environment variable not set')
+assert(process.env.HANDOVER_GCM_TEST_SENDER_ID, '"HANDOVER_GCM_TEST_TOKEN" environment variable not set')
+
 var test     = require('tap'),
     Handover = require('hand-over'),
     Plugin   = require('./'),

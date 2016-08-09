@@ -38,6 +38,6 @@
     "hand-over": "^1.0.0-1"
   },
   "dependencies": {
-    "node-gcm": "^0.14.4"
+    "node-gcm": "0.14.4"
   }
 }

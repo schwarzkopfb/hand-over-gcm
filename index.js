@@ -27,7 +27,17 @@ inherits(HandoverGCM, Plugin)
 HandoverGCM.prototype.name = 'gcm'
 
 HandoverGCM.prototype.send = function sendOverGCM(regid, data, callback) {
-    this.sender.send(new gcm.Message({ data: data }), [ regid ], 5, callback)
+    this.sender.send(new gcm.Message({ data: data }), [ regid ], 5, function (err) {
+        if (err) {
+            // weird: `node-gcm` passes back numbers insted of `Error` instances
+            var er = new Error('transmission failed through Google Cloud Messaging Service')
+            er.statusCode = err
+
+            callback(er)
+        }
+        else
+            callback()
+    })
 }
 
 HandoverGCM.prototype.destroy = function destroyGCMSender() {

@@ -6,23 +6,41 @@ process.nextTick = require('process.nexttick')
 var test     = require('tap'),
     Handover = require('hand-over'),
     Plugin   = require('./'),
-    pending  = 1,
+    pending  = 2,
+    token    = process.env.HANDOVER_GCM_TEST_TOKEN,
     p        = new Plugin(process.env.HANDOVER_GCM_TEST_SENDER_ID),
     n        = new Handover().use(p)
 
 n.load = function (userId, channel, callback) {
-    callback(null, process.env.HANDOVER_GCM_TEST_TOKEN)
+    callback(null, token)
 }
 
-function success(err) {
-    test.notOk(err, 'notification should be sent out successfully')
+function done() {
+    if (--pending)
+        return
+
     n.unref()
     p.destroy()
 }
 
-test.plan(2)
+function success(err) {
+    test.notOk(err, 'notification should be sent out successfully')
+    done()
+}
 
-n.send('test', 'Handover GCM test passed!', success)
+function error(errs) {
+    test.ok(errs, 'notification should _not_ be sent out successfully')
+    test.type(errs, Array, 'returned errors should be in an array')
+    var err = errs[ 0 ]
+    test.type(err, Error, 'returned error should be derived from `Error`')
+    test.equal(err.statusCode, 400, 'error status code should be specified')
+    done()
+}
+
+test.plan(6)
+
+n.send('test', { message: 'Handover GCM test passed!' }, success)
+n.send('test', 'invalid payload', error)
 
 test.test('constructor signatures', function (test) {
     var ref = {},

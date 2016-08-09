@@ -1,6 +1,6 @@
 'use strict'
 
-// support earlt Node releases
+// support early Node releases
 process.nextTick = require('process.nexttick')
 
 var assert = require('assert')

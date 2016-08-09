@@ -11,12 +11,10 @@ Google Cloud Messaging plugin for [Handover](https://npm.im/hand-over).
 
 ```js
 
-const Handover = require('hand-over'),
-      notifier = new Handover
+const Handover = require('hand-over')
 
-notifier.use('gcm', 'your-gcm-api-key')
-
-notifier.send('userId', { message: 'Hello GCM!' }, callback)
+new Handover().use('gcm', 'your-gcm-api-key')
+              .send('userId', { message: 'Hello GCM!' }, callback)
 
 function callback(err) {
     if (err)
